@@ -26,10 +26,16 @@ function readLine() {
 
 function main() {
     const nd = readLine().split(' ');
-
     const n = parseInt(nd[0], 10);
-
     const d = parseInt(nd[1], 10);
-
     const a = readLine().split(' ').map(aTemp => parseInt(aTemp, 10));
+
+    const result = []
+
+    for (let i = 0; i < a.length; i++) {
+        let j = (i + d < a.length) ? i + d : ((i + d) - a.length)
+        result.push(a[j])
+    }
+
+    console.log(result.join(' '))
 }
