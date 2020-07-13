@@ -33,7 +33,44 @@ function readLine() {
 
 function dynamicArray(n, queries) {
     // Write your code here
+    const seqList = []
+    let lastAnswer = 0
+    const result = []
 
+    // for(let i = 0; i < n; i++) {
+    //     seqList.push([])
+    // }
+
+    for(let i = 0; i < queries.length; i++) {
+        let q = queries[i][0]
+        let x = queries[i][1]
+        let y = queries[i][2]
+
+        console.log(`${q} ${x} ${y}`)
+
+        let index = ((x ^ lastAnswer) % n)
+
+        if (seqList[index] === undefined) {
+            seqList[index] = []
+        }
+
+        switch(q) {
+            case 1:
+                console.log(`seqList[${index}].push(${y})`)
+                seqList[index].push(y)
+                break
+
+            case 2:
+                console.log(`lastAnswer = seqList[${index}][${y % seqList[index].length}]`)
+                lastAnswer = seqList[index][y % seqList[index].length]
+                result.push(lastAnswer)
+                break
+        }
+    }
+
+    console.log(result)
+
+    return result
 }
 
 function main() {
